@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200">
+  <!-- Main circular background -->
+  <circle cx="200" cy="100" r="90" fill="#0D0D2B"/>
+  <circle cx="200" cy="100" r="85" fill="#16163A"/>
+  
+  <!-- Orbital rings -->
+  <circle cx="200" cy="100" r="75" fill="none" stroke="#2a2a5a" stroke-width="1"/>
+  <circle cx="200" cy="100" r="65" fill="none" stroke="#2a2a5a" stroke-width="1"/>
+  
+  <!-- Central play button circle -->
+  <circle cx="200" cy="100" r="45" fill="#101032"/>
+  <circle cx="200" cy="100" r="40" fill="#FF3E6C"/>
+  
+  <!-- Play triangle -->
+  <polygon points="185,75 185,125 225,100" fill="white"/>
+  
+  <!-- Circular text layout - top half -->
+  <path id="topArc" d="M200,45 A55,55 0 0,1 255,100" fill="none"/>
+  <text fill="white" font-family="Arial, sans-serif" font-size="22" font-weight="bold">
+    <textPath href="#topArc" startOffset="0%">WATCH</textPath>
+  </text>
+  
+  <!-- Circular text layout - bottom half -->
+  <path id="bottomArc" d="M255,100 A55,55 0 0,1 200,155" fill="none"/>
+  <text fill="#FF3E6C" font-family="Arial, sans-serif" font-size="22" font-weight="bold">
+    <textPath href="#bottomArc" startOffset="0%">PLUE</textPath>
+  </text>
+  
+  <!-- Decorative circles at text breaks -->
+  <circle cx="255" cy="100" r="4" fill="#FF3E6C"/>
+  <circle cx="200" cy="45" r="4" fill="#FF3E6C"/>
+  <circle cx="200" cy="155" r="4" fill="#FF3E6C"/>
+  
+  <!-- Small descriptor text -->
+  <text x="200" y="180" fill="#8888AA" font-family="Arial, sans-serif" font-size="10" text-anchor="middle">STREAMING PLATFORM</text>
+  
+  <!-- Glowing effect -->
+  <circle cx="200" cy="100" r="90" fill="url(#outerGlow)" opacity="0.2"/>
+  <defs>
+    <radialGradient id="outerGlow" cx="200" cy="100" r="90" gradientUnits="userSpaceOnUse">
+      <stop offset="70%" stop-color="#FF3E6C" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#FF3E6C" stop-opacity="0.8"/>
+    </radialGradient>
+  </defs>
+</svg>

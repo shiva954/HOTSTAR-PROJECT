@@ -1,0 +1,178 @@
+ <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classroom | 10000 Coders</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="icon" href="./photos/iconnn.jpeg" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+     integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        
+      }
+      .mmmmmm{
+        margin-left: 140px;
+        
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      #searchInput {
+        height: 40%;
+        width: 100%;
+        padding: 30px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 20px;
+      }
+      #results {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      .image-card {
+        width: 250px;
+        text-align: center;
+      } 
+      .image-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+      } 
+      .no-results {
+        color: #777;
+        text-align: center;
+        margin-top: 20px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo">
+        <img src="images/logo.png.svg" alt="logo" /><br>
+         <button>subscribe ></button>
+     </div>
+      <a href="space.html" class="nav-link" id="homeLink">
+        <span class="icon"> <i class="fa-solid fa-circle-user"></i></span>
+        <span class="label">My Space</span>
+      </a>
+      <a href="search.html" class="nav-link" id="trendingLink">
+        <span class="icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+        <span class="label">Search</span>
+      </a>
+      <a href="index.html" class="nav-link" id="showsLink">
+        <span class="icon"><i class="fa-solid fa-house"></i></span>
+        <span class="label">Home</span>
+      </a>
+      <a href="tv.html" class="nav-link" id="moviesLink">
+        <span class="icon"> <i class="fa-solid fa-tv"></i></span>
+        <span class="label">TV</span>
+      </a>
+      <a href="movie.html" class="nav-link" id="sportsLink">
+        <span class="icon"> <i class="fa-solid fa-clapperboard"></i></span>
+        <span class="label">Movies</span>
+      </a>
+      <a href="sports.html" class="nav-link" id="premiumLink">
+        <span class="icon"> <i class="fa-solid fa-baseball"></i></span>
+        <span class="label">Sports</span>
+      </a>
+      <a href="categories.html" class="nav-link" id="premiumLink">
+        <span class="icon"> <i class="fa-solid fa-list"></i></span>
+        <span class="label">Categories</span>
+      </a>
+    </div>
+
+    <div class="container">
+    
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Search movies,shows...." 
+        oninput="performSearch()" 
+      />
+      <div id="results"></div>
+  
+    <script>
+      // Predefined set of images
+      const images = [
+        { imgSrc: "images/maa1.webp", name: "BIGG BOSS", description: "Famous Show in Star maa." },
+        { imgSrc: "images/maa2.webp", name: "MAHABHARATAM", description: "Famous Serial in Star maa." },
+        { imgSrc: "images/maa3.webp", name: "BRAHMAMUDI", description: "Famous Serial in Star maa." },
+        { imgSrc: "images/maa4.webp", name: "AADIVAARAM WITH STAR MAA PARIVAARAM", description: "Famous Show in Star maa." },
+        { imgSrc: "images/maa5.webp", name: "KARTHIKA DEEPAM", description: "Famous Serial in Star maa." },
+        { imgSrc: "images/maa6.webp", name: "Thor Ragnarok", description: "Famous Serial in Star maa." },
+        { imgSrc: "images/maa7.webp", name: "GUNDENINDA GUDIGANTALU", description: "Famous Serial in Star maa." },
+        { imgSrc: "images/top1.webp", name: "SALAAR", description: "Most Trending Movie in Hindi." },
+        { imgSrc: "images/top2.webp", name: "AAVESHAM", description: "Most Trending Movie in Hindi." },
+        { imgSrc: "images/top3.webp", name: "ARM", description: "Most Trending Movie in Hindi." },
+        { imgSrc: "images/latest7.webp", name: "ALIEN ROMULUS", description: "Most Trending Latest Release Movie."},
+        { imgSrc: "images/latest6.webp", name: "KISHKINDHA KAANDAM", description:  "Most Trending Latest Release Movie."},
+        { imgSrc: "images/latest1.webp", name: "THUKRA KE MERA PYAAR", description: "Most Trending Latest Release Movie."},
+        { imgSrc: "images/latest2.webp", name: "HARIKATHA", description:"Most Trending Latest Release Movie."},
+        { imgSrc: "images/latest3.jpeg", name: "PARACHUTE", description:"Most Trending Latest Release Movie." },
+    
+      ];
+// Display all images initially
+function displayAllImages() {
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = '';
+
+    images.forEach(image => {
+        const imageCard = document.createElement('div');
+        imageCard.className = 'image-card';
+        imageCard.innerHTML = `
+            <img src="${image.imgSrc}" alt="${image.name}" />
+            <p>${image.name}</p>
+        `;
+        resultsContainer.appendChild(imageCard);
+    });
+}
+
+// Perform search
+function performSearch() {
+    const query = document.getElementById('searchInput').value.toLowerCase();
+    const resultsContainer = document.getElementById('results');
+    resultsContainer.innerHTML = '';
+
+    const filteredImages = images.filter(image =>
+        image.name.toLowerCase().includes(query)
+    );
+
+    if (filteredImages.length > 0) {
+        filteredImages.forEach(image => {
+            const imageCard = document.createElement('div');
+            imageCard.className = 'image-card';
+            imageCard.innerHTML = `
+                <img src="${image.imgSrc}" alt="${image.name}" />
+                <p>${image.name}</p>
+            `;
+            resultsContainer.appendChild(imageCard);
+        });
+    } else {
+        resultsContainer.innerHTML = `<div class="no-results">No matching images found</div>`;
+    }
+}
+
+// Display all images when the page loads
+window.onload = displayAllImages;
+
+
+  </script>
+    </body>
+    </html>
